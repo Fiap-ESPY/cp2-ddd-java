@@ -21,7 +21,8 @@ public abstract class Entregador implements TarifaPorDistancia {
     @Override
     public final double valorPara(double quilometros) {
         if (quilometros <= 0) {
-            throw new IllegalArgumentException("Distância deve ser positiva.");
+            LogDominio.registrar("Distância deve ser positiva.");
+            return 0.0;
         }
         return quilometros * taxaKm() + custoFixoOperacional();
     }
@@ -39,7 +40,16 @@ public abstract class Entregador implements TarifaPorDistancia {
     }
 
     public double tempoEstimadoHorasPara(double quilometros) {
-        return quilometros / velocidadeMediaKmPorHora();
+        if (quilometros <= 0) {
+            LogDominio.registrar("Distância deve ser positiva para estimativa.");
+            return 0.0;
+        }
+        double velocidade = velocidadeMediaKmPorHora();
+        if (velocidade <= 0) {
+            LogDominio.registrar("Velocidade média inválida.");
+            return 0.0;
+        }
+        return quilometros / velocidade;
     }
 
     @Override
