@@ -1,10 +1,15 @@
 package com.cp2.logistica.console;
 
+import com.cp2.logistica.domain.Entregador;
+import com.cp2.logistica.domain.EntregadorFactory;
+import com.cp2.logistica.domain.SistemaDelivery;
+
 import java.util.Scanner;
 
 public final class MenuConsole {
 
     private final Scanner scanner = new Scanner(System.in);
+    private final SistemaDelivery sistemaDelivery = new SistemaDelivery();
 
     public void executar() {
         System.out.println("Sistema de Logística — CP2 (base)");
@@ -30,7 +35,7 @@ public final class MenuConsole {
     private boolean processar(String opcaoDoMenu) {
         switch (opcaoDoMenu) {
             case "1":
-                this.informarImplementacaoFutura("Cadastrar entregador");
+                this.sistemaDelivery.cadastrarEntregador();
                 return true;
             case "2":
                 this.informarImplementacaoFutura("Criar entrega");
@@ -52,6 +57,9 @@ public final class MenuConsole {
                 return true;
         }
     }
+
+
+
 
     private void informarImplementacaoFutura(String textoDaAcao) {
         System.out.println("[Em breve] " + textoDaAcao + ".");
