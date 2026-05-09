@@ -11,17 +11,14 @@ public final class Entrega {
     private String status;
     private Entregador entregador;
 
-    private Entrega(String enderecoDestino) {
-        this.enderecoDestino = enderecoDestino;
-        this.status = "PENDENTE";
-    }
-
-    public static Entrega nova(String enderecoDestino) {
-        if (enderecoDestino == null || enderecoDestino.isBlank()) {
+    public Entrega(String enderecoInformadoParaDestino) {
+        if (enderecoInformadoParaDestino == null || enderecoInformadoParaDestino.isBlank()) {
             System.out.println("Endereço obrigatório.");
-            return null;
+            this.enderecoDestino = "";
+        } else {
+            this.enderecoDestino = enderecoInformadoParaDestino.trim();
         }
-        return new Entrega(enderecoDestino.trim());
+        this.status = "PENDENTE";
     }
 
     public Long getId() {
