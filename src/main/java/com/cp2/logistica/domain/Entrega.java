@@ -94,8 +94,25 @@ public final class Entrega {
 
     @Override
     public String toString() {
+        String resumo = """
+                ================================
+                   ENTREGA
+                ================================
+                ID:                     %d
+                Endereço de destino:    %s
+                -------------------------------
+                Status:                 %s
+                Entregador:             %s
+                ================================
+                """;
+
         String ent =
                 this.entregador != null ? this.entregador.toString() : "sem entregador";
-        return "Entrega " + this.id + " → " + this.enderecoDestino + " [" + this.status + "] " + ent;
+
+        return resumo.formatted(
+                this.id,
+                this.enderecoDestino,
+                this.status,
+                ent);
     }
 }
