@@ -91,6 +91,19 @@ public class SistemaDelivery {
         return null;
     }
 
+    public void listarEntregas(){
+        if(entregas.isEmpty()) {
+            System.out.println("Nenhuma Entrega Cadastrada");
+            return;
+        }
+
+        System.out.println("========= Entregas Cadastradas ========= \n" );
+        for(Entrega e : entregas){
+            System.out.println(e);
+        }
+
+    }
+
 
 
 

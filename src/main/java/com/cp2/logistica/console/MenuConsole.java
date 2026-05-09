@@ -41,7 +41,7 @@ public final class MenuConsole {
                 this.sistemaDelivery.cadastrarEntrega();
                 return true;
             case "3":
-                this.informarImplementacaoFutura("Listar entregas");
+                this.sistemaDelivery.listarEntregas();
                 return true;
             case "4":
                 this.sistemaDelivery.atribuirEntregadorEntrega();
