@@ -20,14 +20,12 @@ sdk env
 
 ## Como executar (Java puro, sem Maven)
 
-Na raiz do repositório:
+O código usa sintaxe compatível com **Java 21+** (por exemplo *text blocks* com aspas triplas, igual ao CP1). Na raiz, use o JDK aplicado pelo passo anterior:
 
 ```bash
+sdk env
 mkdir -p out
-javac -d out -encoding UTF-8 \
-  src/main/java/com/cp2/logistica/Main.java \
-  src/main/java/com/cp2/logistica/console/MenuConsole.java \
-  src/main/java/com/cp2/logistica/domain/package-info.java
+find src/main/java -name "*.java" -print0 | xargs -0 javac -d out -encoding UTF-8
 java -cp out com.cp2.logistica.Main
 ```
 

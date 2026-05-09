@@ -6,13 +6,13 @@ public final class MenuConsole {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void run() {
+    public void executar() {
         System.out.println("Sistema de Logística — CP2 (base)");
         boolean continuar = true;
         while (continuar) {
-            exibirOpcoes();
-            String linha = scanner.nextLine().trim();
-            continuar = processar(linha);
+            this.exibirOpcoes();
+            String linhaLida = this.scanner.nextLine().trim();
+            continuar = this.processar(linhaLida);
         }
     }
 
@@ -27,22 +27,22 @@ public final class MenuConsole {
         System.out.print("Escolha: ");
     }
 
-    private boolean processar(String opcao) {
-        switch (opcao) {
+    private boolean processar(String opcaoDoMenu) {
+        switch (opcaoDoMenu) {
             case "1":
-                emBreve("Cadastrar entregador");
+                this.informarImplementacaoFutura("Cadastrar entregador");
                 return true;
             case "2":
-                emBreve("Criar entrega");
+                this.informarImplementacaoFutura("Criar entrega");
                 return true;
             case "3":
-                emBreve("Listar entregas");
+                this.informarImplementacaoFutura("Listar entregas");
                 return true;
             case "4":
-                emBreve("Atribuir entrega");
+                this.informarImplementacaoFutura("Atribuir entrega");
                 return true;
             case "5":
-                emBreve("Atualizar status");
+                this.informarImplementacaoFutura("Atualizar status");
                 return true;
             case "0":
                 System.out.println("Encerrando.");
@@ -53,7 +53,7 @@ public final class MenuConsole {
         }
     }
 
-    private static void emBreve(String nome) {
-        System.out.println("[Em breve] " + nome + ".");
+    private void informarImplementacaoFutura(String textoDaAcao) {
+        System.out.println("[Em breve] " + textoDaAcao + ".");
     }
 }
