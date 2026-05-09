@@ -11,8 +11,8 @@ public final class MenuConsole {
         boolean continuar = true;
         while (continuar) {
             this.exibirOpcoes();
-            String linha = this.scanner.nextLine().trim();
-            continuar = this.processar(linha);
+            String linhaLidaDoConsole = this.scanner.nextLine().trim();
+            continuar = this.processar(linhaLidaDoConsole);
         }
     }
 
@@ -27,8 +27,8 @@ public final class MenuConsole {
         System.out.print("Escolha: ");
     }
 
-    private boolean processar(String opcao) {
-        switch (opcao) {
+    private boolean processar(String opcaoEscolhidaPeloUsuario) {
+        switch (opcaoEscolhidaPeloUsuario) {
             case "1":
                 this.emBreve("Cadastrar entregador");
                 return true;
@@ -53,7 +53,7 @@ public final class MenuConsole {
         }
     }
 
-    private void emBreve(String nome) {
-        System.out.println("[Em breve] " + nome + ".");
+    private void emBreve(String tituloOuDescricaoDaAcaoPlanejada) {
+        System.out.println("[Em breve] " + tituloOuDescricaoDaAcaoPlanejada + ".");
     }
 }

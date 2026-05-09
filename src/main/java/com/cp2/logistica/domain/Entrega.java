@@ -41,10 +41,14 @@ public final class Entrega {
     }
 
     public boolean registrarEntrega(Entregador entregadorAssociado, String statusInicial) {
-        List<String> statusValidos = List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
+        List<String> listaDeStatusValidosAceitosPeloDominioDaEntrega =
+                List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
 
-        if (statusInicial == null || !statusValidos.contains(statusInicial)) {
-            System.out.println("Status inválido. Os status válidos são: " + statusValidos);
+        if (statusInicial == null
+                || !listaDeStatusValidosAceitosPeloDominioDaEntrega.contains(statusInicial)) {
+            System.out.println(
+                    "Status inválido. Os status válidos são: "
+                            + listaDeStatusValidosAceitosPeloDominioDaEntrega);
             return false;
         }
 
@@ -61,10 +65,14 @@ public final class Entrega {
     }
 
     public boolean atualizarStatus(String novoStatus) {
-        List<String> statusValidos = List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
+        List<String> listaDeStatusValidosAceitosPeloDominioDaEntrega =
+                List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
 
-        if (novoStatus == null || !statusValidos.contains(novoStatus)) {
-            System.out.println("Status inválido. Os status válidos são: " + statusValidos);
+        if (novoStatus == null
+                || !listaDeStatusValidosAceitosPeloDominioDaEntrega.contains(novoStatus)) {
+            System.out.println(
+                    "Status inválido. Os status válidos são: "
+                            + listaDeStatusValidosAceitosPeloDominioDaEntrega);
             return false;
         }
 
@@ -94,7 +102,7 @@ public final class Entrega {
 
     @Override
     public String toString() {
-        String resumo = """
+        String blocoFormatadoParaResumoDaEntrega = """
                 ================================
                    ENTREGA
                 ================================
@@ -106,13 +114,13 @@ public final class Entrega {
                 ================================
                 """;
 
-        String ent =
+        String descricaoOuAusenciaDoEntregador =
                 this.entregador != null ? this.entregador.toString() : "sem entregador";
 
-        return resumo.formatted(
+        return blocoFormatadoParaResumoDaEntrega.formatted(
                 this.id,
                 this.enderecoDestino,
                 this.status,
-                ent);
+                descricaoOuAusenciaDoEntregador);
     }
 }
