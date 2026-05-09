@@ -6,7 +6,7 @@ public final class MenuConsole {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void run() {
+    public void executar() {
         System.out.println("Sistema de Logística — CP2 (base)");
         boolean continuar = true;
         while (continuar) {
@@ -30,19 +30,19 @@ public final class MenuConsole {
     private boolean processar(String opcaoDoMenu) {
         switch (opcaoDoMenu) {
             case "1":
-                this.emBreve("Cadastrar entregador");
+                this.informarImplementacaoFutura("Cadastrar entregador");
                 return true;
             case "2":
-                this.emBreve("Criar entrega");
+                this.informarImplementacaoFutura("Criar entrega");
                 return true;
             case "3":
-                this.emBreve("Listar entregas");
+                this.informarImplementacaoFutura("Listar entregas");
                 return true;
             case "4":
-                this.emBreve("Atribuir entrega");
+                this.informarImplementacaoFutura("Atribuir entrega");
                 return true;
             case "5":
-                this.emBreve("Atualizar status");
+                this.informarImplementacaoFutura("Atualizar status");
                 return true;
             case "0":
                 System.out.println("Encerrando.");
@@ -53,7 +53,7 @@ public final class MenuConsole {
         }
     }
 
-    private void emBreve(String textoDaAcao) {
+    private void informarImplementacaoFutura(String textoDaAcao) {
         System.out.println("[Em breve] " + textoDaAcao + ".");
     }
 }

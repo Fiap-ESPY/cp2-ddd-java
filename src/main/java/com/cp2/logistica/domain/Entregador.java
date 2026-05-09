@@ -24,18 +24,18 @@ public abstract class Entregador implements TarifaPorDistancia {
             System.out.println("Distância deve ser positiva.");
             return 0.0;
         }
-        return quilometros * this.taxaKm() + this.custoFixoOperacional();
+        return quilometros * this.obterTaxaPorKm() + this.obterCustoFixoOperacional();
     }
 
-    public abstract double capacidadeKg();
+    public abstract double obterCapacidadeKg();
 
-    public abstract String tipoDescricao();
+    public abstract String obterDescricaoDoTipo();
 
-    protected abstract double taxaKm();
+    protected abstract double obterTaxaPorKm();
 
-    protected abstract double custoFixoOperacional();
+    protected abstract double obterCustoFixoOperacional();
 
-    protected double velocidadeMediaKmPorHora() {
+    protected double obterVelocidadeMediaKmPorHora() {
         return 24.0;
     }
 
@@ -45,7 +45,7 @@ public abstract class Entregador implements TarifaPorDistancia {
             return 0.0;
         }
 
-        double velocidadeKmPorHora = this.velocidadeMediaKmPorHora();
+        double velocidadeKmPorHora = this.obterVelocidadeMediaKmPorHora();
         if (velocidadeKmPorHora <= 0) {
             System.out.println("Velocidade média inválida.");
             return 0.0;
@@ -70,8 +70,8 @@ public abstract class Entregador implements TarifaPorDistancia {
         return resumoFormatado.formatted(
                 this.id,
                 this.nome,
-                this.tipoDescricao(),
-                this.capacidadeKg(),
-                this.velocidadeMediaKmPorHora());
+                this.obterDescricaoDoTipo(),
+                this.obterCapacidadeKg(),
+                this.obterVelocidadeMediaKmPorHora());
     }
 }
