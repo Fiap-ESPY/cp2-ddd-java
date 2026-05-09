@@ -38,7 +38,7 @@ public final class Entrega {
     }
 
     public boolean registrarEntrega(Entregador entregadorAssociado) {
-        if (!this.associarEntregadorSePermitido(entregadorAssociado)) {
+        if (!this.associarEntregador(entregadorAssociado)) {
             return false;
         }
         this.status = "EM_ROTA";
@@ -61,10 +61,10 @@ public final class Entrega {
     }
 
     public boolean definirEntregador(Entregador entregadorAssociado) {
-        return this.associarEntregadorSePermitido(entregadorAssociado);
+        return this.associarEntregador(entregadorAssociado);
     }
 
-    private boolean associarEntregadorSePermitido(Entregador entregadorAssociado) {
+    private boolean associarEntregador(Entregador entregadorAssociado) {
         if (entregadorAssociado == null) {
             System.out.println("Entregador obrigatório.");
             return false;
