@@ -24,10 +24,7 @@ Na raiz do repositório:
 
 ```bash
 mkdir -p out
-javac -d out -encoding UTF-8 \
-  src/main/java/com/cp2/logistica/Main.java \
-  src/main/java/com/cp2/logistica/console/MenuConsole.java \
-  src/main/java/com/cp2/logistica/domain/package-info.java
+find src/main/java -name "*.java" -print0 | xargs -0 javac -d out -encoding UTF-8
 java -cp out com.cp2.logistica.Main
 ```
 
