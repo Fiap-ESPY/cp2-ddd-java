@@ -7,27 +7,27 @@ public final class EntregadorCarro extends Entregador {
     }
 
     @Override
-    public double obterCapacidadeKg() {
+    public double getCapacidadeKg() {
         return 200.0;
     }
 
     @Override
-    public String obterDescricaoDoTipo() {
+    public String getDescricaoDoTipo() {
         return "Carro";
     }
 
     @Override
-    protected double obterTaxaPorKm() {
+    protected double getTaxaPorKm() {
         return 5.5;
     }
 
     @Override
-    protected double obterCustoFixoOperacional() {
+    protected double getCustoFixoOperacional() {
         return 12.0;
     }
 
     @Override
-    protected double obterVelocidadeMediaKmPorHora() {
+    protected double getVelocidadeMediaKmPorHora() {
         return 40.0;
     }
 }
