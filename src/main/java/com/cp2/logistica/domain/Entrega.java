@@ -22,11 +22,11 @@ public final class Entrega {
 
     public static Optional<Entrega> comIdentificador(String id, String enderecoDestino) {
         if (enderecoDestino == null || enderecoDestino.isBlank()) {
-            LogDominio.registrar("Endereço obrigatório.");
+            System.out.println("Endereço obrigatório.");
             return Optional.empty();
         }
         if (id == null || id.isBlank()) {
-            LogDominio.registrar("Identificador obrigatório.");
+            System.out.println("Identificador obrigatório.");
             return Optional.empty();
         }
         return Optional.of(new Entrega(id, enderecoDestino.trim()));
@@ -53,7 +53,7 @@ public final class Entrega {
             return false;
         }
         if (statusInicial == null) {
-            LogDominio.registrar("Status inicial obrigatório.");
+            System.out.println("Status inicial obrigatório.");
             return false;
         }
         this.status = statusInicial;
@@ -66,7 +66,7 @@ public final class Entrega {
 
     public boolean atualizarStatus(StatusEntrega novoStatus) {
         if (novoStatus == null) {
-            LogDominio.registrar("Status inválido.");
+            System.out.println("Status inválido.");
             return false;
         }
         this.status = novoStatus;
@@ -79,11 +79,11 @@ public final class Entrega {
 
     private boolean associarEntregadorSePermitido(Entregador entregadorAssociado) {
         if (entregadorAssociado == null) {
-            LogDominio.registrar("Entregador obrigatório.");
+            System.out.println("Entregador obrigatório.");
             return false;
         }
         if (status == StatusEntrega.CANCELADO || status == StatusEntrega.ENTREGUE) {
-            LogDominio.registrar(
+            System.out.println(
                     "Não é permitido alterar entregador neste estado: " + status);
             return false;
         }
