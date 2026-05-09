@@ -2,51 +2,43 @@ package com.cp2.logistica.domain;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.Random;
 
 public final class Entrega {
 
-    private final String id;
+    private final Long id = Math.abs(new Random().nextLong());
+
     private final String enderecoDestino;
     private String status;
     private Entregador entregador;
 
-    private Entrega(String id, String enderecoDestino) {
-        this.id = id;
+    private Entrega(String enderecoDestino) {
         this.enderecoDestino = enderecoDestino;
         this.status = "PENDENTE";
     }
 
     public static Optional<Entrega> nova(String enderecoDestino) {
-        return comIdentificador(UUID.randomUUID().toString(), enderecoDestino);
-    }
-
-    public static Optional<Entrega> comIdentificador(String id, String enderecoDestino) {
         if (enderecoDestino == null || enderecoDestino.isBlank()) {
             System.out.println("Endereço obrigatório.");
             return Optional.empty();
         }
-        if (id == null || id.isBlank()) {
-            System.out.println("Identificador obrigatório.");
-            return Optional.empty();
-        }
-        return Optional.of(new Entrega(id, enderecoDestino.trim()));
+        return Optional.of(new Entrega(enderecoDestino.trim()));
     }
 
-    public String getId() {
-        return id;
+    public Long getId() {
+        return this.id;
     }
 
     public String getEnderecoDestino() {
-        return enderecoDestino;
+        return this.enderecoDestino;
     }
 
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     public Entregador getEntregador() {
-        return entregador;
+        return this.entregador;
     }
 
     public boolean registrarEntrega(Entregador entregadorAssociado, String statusInicial) {
