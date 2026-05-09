@@ -19,7 +19,7 @@ public abstract class Entregador implements TarifaPorDistancia {
     }
 
     @Override
-    public final double valorPara(double quilometros) {
+    public final double calcularEntrega(double quilometros) {
         if (quilometros <= 0) {
             System.out.println("Distância deve ser positiva.");
             return 0.0;
@@ -44,6 +44,7 @@ public abstract class Entregador implements TarifaPorDistancia {
             System.out.println("Distância deve ser positiva para estimativa.");
             return 0.0;
         }
+        
         double velocidadeKmPorHora = this.velocidadeMediaKmPorHora();
         if (velocidadeKmPorHora <= 0) {
             System.out.println("Velocidade média inválida.");
