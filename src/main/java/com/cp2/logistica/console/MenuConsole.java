@@ -10,9 +10,9 @@ public final class MenuConsole {
         System.out.println("Sistema de Logística — CP2 (base)");
         boolean continuar = true;
         while (continuar) {
-            exibirOpcoes();
-            String linha = scanner.nextLine().trim();
-            continuar = processar(linha);
+            this.exibirOpcoes();
+            String linha = this.scanner.nextLine().trim();
+            continuar = this.processar(linha);
         }
     }
 
@@ -30,19 +30,19 @@ public final class MenuConsole {
     private boolean processar(String opcao) {
         switch (opcao) {
             case "1":
-                emBreve("Cadastrar entregador");
+                this.emBreve("Cadastrar entregador");
                 return true;
             case "2":
-                emBreve("Criar entrega");
+                this.emBreve("Criar entrega");
                 return true;
             case "3":
-                emBreve("Listar entregas");
+                this.emBreve("Listar entregas");
                 return true;
             case "4":
-                emBreve("Atribuir entrega");
+                this.emBreve("Atribuir entrega");
                 return true;
             case "5":
-                emBreve("Atualizar status");
+                this.emBreve("Atualizar status");
                 return true;
             case "0":
                 System.out.println("Encerrando.");
@@ -53,7 +53,7 @@ public final class MenuConsole {
         }
     }
 
-    private static void emBreve(String nome) {
+    private void emBreve(String nome) {
         System.out.println("[Em breve] " + nome + ".");
     }
 }

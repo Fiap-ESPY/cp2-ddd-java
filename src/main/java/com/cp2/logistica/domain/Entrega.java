@@ -57,7 +57,7 @@ public final class Entrega {
             return false;
         }
 
-        if (!associarEntregadorSePermitido(entregadorAssociado)) {
+        if (!this.associarEntregadorSePermitido(entregadorAssociado)) {
             return false;
         }
 
@@ -66,7 +66,7 @@ public final class Entrega {
     }
 
     public boolean registrarEntrega(Entregador entregadorAssociado) {
-        return registrarEntrega(entregadorAssociado, "EM_ROTA");
+        return this.registrarEntrega(entregadorAssociado, "EM_ROTA");
     }
 
     public boolean atualizarStatus(String novoStatus) {
@@ -82,7 +82,7 @@ public final class Entrega {
     }
 
     public boolean definirEntregador(Entregador entregadorAssociado) {
-        return associarEntregadorSePermitido(entregadorAssociado);
+        return this.associarEntregadorSePermitido(entregadorAssociado);
     }
 
     private boolean associarEntregadorSePermitido(Entregador entregadorAssociado) {
@@ -91,9 +91,9 @@ public final class Entrega {
             return false;
         }
 
-        if ("CANCELADO".equals(status) || "ENTREGUE".equals(status)) {
+        if ("CANCELADO".equals(this.status) || "ENTREGUE".equals(this.status)) {
             System.out.println(
-                    "Não é permitido alterar entregador neste estado: " + status);
+                    "Não é permitido alterar entregador neste estado: " + this.status);
             return false;
         }
 
@@ -104,7 +104,7 @@ public final class Entrega {
     @Override
     public String toString() {
         String ent =
-                entregador != null ? entregador.toString() : "sem entregador";
-        return "Entrega " + id + " → " + enderecoDestino + " [" + status + "] " + ent;
+                this.entregador != null ? this.entregador.toString() : "sem entregador";
+        return "Entrega " + this.id + " → " + this.enderecoDestino + " [" + this.status + "] " + ent;
     }
 }
