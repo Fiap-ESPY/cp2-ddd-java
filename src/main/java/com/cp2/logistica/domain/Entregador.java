@@ -39,12 +39,12 @@ public abstract class Entregador implements TarifaPorDistancia {
         return 24.0;
     }
 
-    public double tempoEstimadoHorasPara(double quilometros) {
+    public double calcularTempoEstimado(double quilometros) {
         if (quilometros <= 0) {
             System.out.println("Distância deve ser positiva para estimativa.");
             return 0.0;
         }
-        
+
         double velocidadeKmPorHora = this.velocidadeMediaKmPorHora();
         if (velocidadeKmPorHora <= 0) {
             System.out.println("Velocidade média inválida.");
