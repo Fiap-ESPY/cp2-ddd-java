@@ -2,8 +2,8 @@ package com.cp2.logistica.domain;
 
 public final class EntregadorBicicleta extends Entregador {
 
-    public EntregadorBicicleta(String idDoEntregador, String nomeDoEntregador) {
-        super(idDoEntregador, nomeDoEntregador);
+    public EntregadorBicicleta(String identificador, String nome) {
+        super(identificador, nome);
     }
 
     @Override

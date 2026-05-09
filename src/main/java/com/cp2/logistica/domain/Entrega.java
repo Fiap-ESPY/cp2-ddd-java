@@ -41,14 +41,13 @@ public final class Entrega {
     }
 
     public boolean registrarEntrega(Entregador entregadorAssociado, String statusInicial) {
-        List<String> listaDeStatusValidosAceitosPeloDominioDaEntrega =
+        List<String> statusValidos =
                 List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
 
         if (statusInicial == null
-                || !listaDeStatusValidosAceitosPeloDominioDaEntrega.contains(statusInicial)) {
+                || !statusValidos.contains(statusInicial)) {
             System.out.println(
-                    "Status inválido. Os status válidos são: "
-                            + listaDeStatusValidosAceitosPeloDominioDaEntrega);
+                    "Status inválido. Os status válidos são: " + statusValidos);
             return false;
         }
 
@@ -65,14 +64,13 @@ public final class Entrega {
     }
 
     public boolean atualizarStatus(String novoStatus) {
-        List<String> listaDeStatusValidosAceitosPeloDominioDaEntrega =
+        List<String> statusValidos =
                 List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
 
         if (novoStatus == null
-                || !listaDeStatusValidosAceitosPeloDominioDaEntrega.contains(novoStatus)) {
+                || !statusValidos.contains(novoStatus)) {
             System.out.println(
-                    "Status inválido. Os status válidos são: "
-                            + listaDeStatusValidosAceitosPeloDominioDaEntrega);
+                    "Status inválido. Os status válidos são: " + statusValidos);
             return false;
         }
 
@@ -102,7 +100,7 @@ public final class Entrega {
 
     @Override
     public String toString() {
-        String blocoFormatadoParaResumoDaEntrega = """
+        String resumoFormatado = """
                 ================================
                    ENTREGA
                 ================================
@@ -114,13 +112,13 @@ public final class Entrega {
                 ================================
                 """;
 
-        String descricaoOuAusenciaDoEntregador =
+        String detalhesDoEntregador =
                 this.entregador != null ? this.entregador.toString() : "sem entregador";
 
-        return blocoFormatadoParaResumoDaEntrega.formatted(
+        return resumoFormatado.formatted(
                 this.id,
                 this.enderecoDestino,
                 this.status,
-                descricaoOuAusenciaDoEntregador);
+                detalhesDoEntregador);
     }
 }

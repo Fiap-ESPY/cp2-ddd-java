@@ -5,9 +5,9 @@ public abstract class Entregador implements TarifaPorDistancia {
     private final String id;
     private final String nome;
 
-    protected Entregador(String idDoEntregador, String nomeDoEntregador) {
-        this.id = idDoEntregador;
-        this.nome = nomeDoEntregador;
+    protected Entregador(String identificador, String nome) {
+        this.id = identificador;
+        this.nome = nome;
     }
 
     public final String getId() {
@@ -44,12 +44,12 @@ public abstract class Entregador implements TarifaPorDistancia {
             System.out.println("Distância deve ser positiva para estimativa.");
             return 0.0;
         }
-        double velocidadeMediaKmPorHoraCalculada = this.velocidadeMediaKmPorHora();
-        if (velocidadeMediaKmPorHoraCalculada <= 0) {
+        double velocidadeKmPorHora = this.velocidadeMediaKmPorHora();
+        if (velocidadeKmPorHora <= 0) {
             System.out.println("Velocidade média inválida.");
             return 0.0;
         }
-        return quilometros / velocidadeMediaKmPorHoraCalculada;
+        return quilometros / velocidadeKmPorHora;
     }
 
     @Override
