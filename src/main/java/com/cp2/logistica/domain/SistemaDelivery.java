@@ -104,6 +104,50 @@ public class SistemaDelivery {
 
     }
 
+    public void atualizarStatusEntrega() {
+
+        if (entregas.isEmpty()) {
+            System.out.println("Nenhuma entrega cadastrada.");
+            return;
+        }
+
+        System.out.println("========= ENTREGAS =========");
+
+        for (int i = 0; i < entregas.size(); i++) {
+            System.out.println(i + " - " + entregas.get(i));
+        }
+
+        System.out.println("Escolha o índice da entrega:");
+
+        int indice =
+                Integer.parseInt(scanner.nextLine());
+
+        if (indice < 0 || indice >= entregas.size()) {
+            System.out.println("Índice inválido.");
+            return;
+        }
+
+        System.out.println("""
+            Digite o novo status:
+            PENDENTE
+            EM_ROTA
+            ENTREGUE
+            CANCELADO
+            """);
+
+        String novoStatus =
+                scanner.nextLine().trim().toUpperCase();
+
+        Entrega entrega = entregas.get(indice);
+
+        boolean atualizado =
+                entrega.atualizarStatus(novoStatus);
+
+        if (atualizado) {
+            System.out.println("Status atualizado com sucesso!");
+        }
+    }
+
 
 
 

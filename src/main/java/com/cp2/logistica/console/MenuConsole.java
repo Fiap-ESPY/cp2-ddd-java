@@ -47,7 +47,7 @@ public final class MenuConsole {
                 this.sistemaDelivery.atribuirEntregadorEntrega();
                 return true;
             case "5":
-                this.informarImplementacaoFutura("Atualizar status");
+                this.sistemaDelivery.atualizarStatusEntrega();
                 return true;
             case "0":
                 System.out.println("Encerrando.");
