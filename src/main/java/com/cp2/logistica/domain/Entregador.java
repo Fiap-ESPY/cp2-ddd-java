@@ -54,6 +54,23 @@ public abstract class Entregador implements TarifaPorDistancia {
 
     @Override
     public String toString() {
-        return this.tipoDescricao() + " — " + this.nome + " (" + this.id + ")";
+        String resumoFormatado = """
+                ================================
+                   ENTREGADOR
+                ================================
+                Identificador:            %s
+                Nome:                     %s
+                Tipo:                     %s
+                ----------------------------
+                Capacidade (kg):          %.2f
+                Velocidade média (km/h):  %.1f
+                ================================
+                """;
+        return resumoFormatado.formatted(
+                this.id,
+                this.nome,
+                this.tipoDescricao(),
+                this.capacidadeKg(),
+                this.velocidadeMediaKmPorHora());
     }
 }

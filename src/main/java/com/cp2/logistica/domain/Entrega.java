@@ -101,11 +101,13 @@ public final class Entrega {
                 ================================
                    ENTREGA
                 ================================
-                ID:                     %d
-                Endereço de destino:    %s
-                -------------------------------
-                Status:                 %s
-                Entregador:             %s
+                Identificação:           %d
+                Endereço de destino:     %s
+                ----------------------------
+                Status:                  %s
+                ----------------------------
+                Detalhes do entregador:
+                %s
                 ================================
                 """;
 
