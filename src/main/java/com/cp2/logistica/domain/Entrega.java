@@ -11,12 +11,12 @@ public final class Entrega {
     private String status;
     private Entregador entregador;
 
-    public Entrega(String enderecoInformadoParaDestino) {
-        if (enderecoInformadoParaDestino == null || enderecoInformadoParaDestino.isBlank()) {
+    public Entrega(String enderecoDestino) {
+        if (enderecoDestino == null || enderecoDestino.isBlank()) {
             System.out.println("Endereço obrigatório.");
             this.enderecoDestino = "";
         } else {
-            this.enderecoDestino = enderecoInformadoParaDestino.trim();
+            this.enderecoDestino = enderecoDestino.trim();
         }
         this.status = "PENDENTE";
     }
