@@ -38,13 +38,13 @@ public final class MenuConsole {
                 this.sistemaDelivery.cadastrarEntregador();
                 return true;
             case "2":
-                this.informarImplementacaoFutura("Criar entrega");
+                this.sistemaDelivery.cadastrarEntrega();
                 return true;
             case "3":
                 this.informarImplementacaoFutura("Listar entregas");
                 return true;
             case "4":
-                this.informarImplementacaoFutura("Atribuir entrega");
+                this.sistemaDelivery.atribuirEntregadorEntrega();
                 return true;
             case "5":
                 this.informarImplementacaoFutura("Atualizar status");
