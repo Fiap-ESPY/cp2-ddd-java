@@ -1,7 +1,6 @@
 package com.cp2.logistica.domain;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public final class Entrega {
@@ -17,12 +16,12 @@ public final class Entrega {
         this.status = "PENDENTE";
     }
 
-    public static Optional<Entrega> nova(String enderecoDestino) {
+    public static Entrega nova(String enderecoDestino) {
         if (enderecoDestino == null || enderecoDestino.isBlank()) {
             System.out.println("Endereço obrigatório.");
-            return Optional.empty();
+            return null;
         }
-        return Optional.of(new Entrega(enderecoDestino.trim()));
+        return new Entrega(enderecoDestino.trim());
     }
 
     public Long getId() {
