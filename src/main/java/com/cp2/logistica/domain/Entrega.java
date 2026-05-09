@@ -1,5 +1,6 @@
 package com.cp2.logistica.domain;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -7,13 +8,13 @@ public final class Entrega {
 
     private final String id;
     private final String enderecoDestino;
-    private StatusEntrega status;
+    private String status;
     private Entregador entregador;
 
     private Entrega(String id, String enderecoDestino) {
         this.id = id;
         this.enderecoDestino = enderecoDestino;
-        this.status = StatusEntrega.PENDENTE;
+        this.status = "PENDENTE";
     }
 
     public static Optional<Entrega> nova(String enderecoDestino) {
@@ -40,7 +41,7 @@ public final class Entrega {
         return enderecoDestino;
     }
 
-    public StatusEntrega getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -48,27 +49,34 @@ public final class Entrega {
         return entregador;
     }
 
-    public boolean registrarEntrega(Entregador entregadorAssociado, StatusEntrega statusInicial) {
+    public boolean registrarEntrega(Entregador entregadorAssociado, String statusInicial) {
+        List<String> statusValidos = List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
+
+        if (statusInicial == null || !statusValidos.contains(statusInicial)) {
+            System.out.println("Status inválido. Os status válidos são: " + statusValidos);
+            return false;
+        }
+
         if (!associarEntregadorSePermitido(entregadorAssociado)) {
             return false;
         }
-        if (statusInicial == null) {
-            System.out.println("Status inicial obrigatório.");
-            return false;
-        }
+
         this.status = statusInicial;
         return true;
     }
 
     public boolean registrarEntrega(Entregador entregadorAssociado) {
-        return registrarEntrega(entregadorAssociado, StatusEntrega.EM_ROTA);
+        return registrarEntrega(entregadorAssociado, "EM_ROTA");
     }
 
-    public boolean atualizarStatus(StatusEntrega novoStatus) {
-        if (novoStatus == null) {
-            System.out.println("Status inválido.");
+    public boolean atualizarStatus(String novoStatus) {
+        List<String> statusValidos = List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
+
+        if (novoStatus == null || !statusValidos.contains(novoStatus)) {
+            System.out.println("Status inválido. Os status válidos são: " + statusValidos);
             return false;
         }
+
         this.status = novoStatus;
         return true;
     }
@@ -82,11 +90,13 @@ public final class Entrega {
             System.out.println("Entregador obrigatório.");
             return false;
         }
-        if (status == StatusEntrega.CANCELADO || status == StatusEntrega.ENTREGUE) {
+
+        if ("CANCELADO".equals(status) || "ENTREGUE".equals(status)) {
             System.out.println(
                     "Não é permitido alterar entregador neste estado: " + status);
             return false;
         }
+
         this.entregador = entregadorAssociado;
         return true;
     }
