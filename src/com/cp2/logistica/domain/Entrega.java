@@ -13,12 +13,7 @@ public final class Entrega {
     private String observacao;
     private Entregador entregador;
 
-
     public Entrega(String enderecoDestino, double distanciaKm) {
-        this(enderecoDestino, distanciaKm, "");
-    }
-
-    public Entrega(String enderecoDestino, double distanciaKm, String observacaoInicial) {
         if (enderecoDestino == null || enderecoDestino.isBlank()) {
             System.out.println("Endereço obrigatório.");
             this.enderecoDestino = "";
@@ -27,7 +22,6 @@ public final class Entrega {
         }
         this.distanciaKm = distanciaKm;
         this.status = "PENDENTE";
-        this.observacao = observacaoInicial != null ? observacaoInicial.trim() : "";
     }
 
     public Long getId() {
