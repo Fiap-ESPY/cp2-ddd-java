@@ -39,18 +39,18 @@ public final class Entrega {
 
     public boolean registrarEntrega(Entregador entregadorAssociado) {
         if (!this.associarEntregador(entregadorAssociado)) {
-            return false;
+            return true;
         }
+
         this.status = "EM_ROTA";
-        return true;
+        return false;
     }
 
     public boolean atualizarStatus(String novoStatus) {
         List<String> statusValidos =
                 List.of("PENDENTE", "EM_ROTA", "ENTREGUE", "CANCELADO");
 
-        if (novoStatus == null
-                || !statusValidos.contains(novoStatus)) {
+        if (novoStatus == null || !statusValidos.contains(novoStatus)) {
             System.out.println(
                     "Status inválido. Os status válidos são: " + statusValidos);
             return false;
@@ -58,10 +58,6 @@ public final class Entrega {
 
         this.status = novoStatus;
         return true;
-    }
-
-    public boolean definirEntregador(Entregador entregadorAssociado) {
-        return this.associarEntregador(entregadorAssociado);
     }
 
     private boolean associarEntregador(Entregador entregadorAssociado) {
@@ -88,12 +84,10 @@ public final class Entrega {
                 ================================
                 ID:                      %d
                 Endereço de destino:     %s
-                ----------------------------
                 Status:                  %s
                 ----------------------------
                 Detalhes do entregador:
                 %s
-                ================================
                 """;
 
         String detalhesDoEntregador =
