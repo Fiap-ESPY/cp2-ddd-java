@@ -1,6 +1,6 @@
 package com.cp2.logistica.console;
 
-import com.cp2.logistica.domain.SistemaDelivery;
+import com.cp2.logistica.SistemaDelivery;
 
 import java.util.Scanner;
 
@@ -24,8 +24,7 @@ public final class MenuConsole {
         System.out.println("1 — Cadastrar entregador");
         System.out.println("2 — Criar entrega");
         System.out.println("3 — Listar entregas");
-        System.out.println("4 — Atribuir entrega a entregador");
-        System.out.println("5 — Atualizar status da entrega");
+        System.out.println("4 — Atualizar status da entrega");
         System.out.println("0 — Sair");
         System.out.print("Escolha: ");
     }
@@ -45,10 +44,6 @@ public final class MenuConsole {
                 yield true;
             }
             case "4" -> {
-                this.sistemaDelivery.atribuirEntregadorEntrega();
-                yield true;
-            }
-            case "5" -> {
                 this.sistemaDelivery.atualizarStatusEntrega();
                 yield true;
             }

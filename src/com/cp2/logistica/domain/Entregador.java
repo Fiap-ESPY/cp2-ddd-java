@@ -58,16 +58,11 @@ public abstract class Entregador implements TarifaPorDistancia {
     @Override
     public String toString() {
         String resumoFormatado = """
-                ================================
-                   ENTREGADOR
-                ================================
                 ID:                       %s
                 Nome:                     %s
                 Tipo:                     %s
-                ----------------------------
                 Capacidade (kg):          %.2f
                 Velocidade média (km/h):  %.1f
-                ================================
                 """;
         return resumoFormatado.formatted(
                 this.id,
