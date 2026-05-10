@@ -8,16 +8,19 @@ public final class Entrega {
     private final Long id = Math.abs(new Random().nextLong());
 
     private final String enderecoDestino;
+    private final double distanciaKm;
     private String status;
+    private String observacao;
     private Entregador entregador;
 
-    public Entrega(String enderecoDestino) {
+    public Entrega(String enderecoDestino, double distanciaKm) {
         if (enderecoDestino == null || enderecoDestino.isBlank()) {
             System.out.println("Endereço obrigatório.");
             this.enderecoDestino = "";
         } else {
             this.enderecoDestino = enderecoDestino.trim();
         }
+        this.distanciaKm = distanciaKm;
         this.status = "PENDENTE";
     }
 
@@ -29,6 +32,10 @@ public final class Entrega {
         return this.enderecoDestino;
     }
 
+    public double getDistanciaKm() {
+        return this.distanciaKm;
+    }
+
     public String getStatus() {
         return this.status;
     }
@@ -37,13 +44,36 @@ public final class Entrega {
         return this.entregador;
     }
 
+    public String getObservacao() {
+        return this.observacao;
+    }
+
     public boolean registrarEntrega(Entregador entregadorAssociado) {
-        if (!this.associarEntregador(entregadorAssociado)) {
-            return true;
+        return this.registrarEntrega(entregadorAssociado, null);
+    }
+
+    public boolean registrarEntrega(Entregador entregadorAssociado, String observacaoDaEntrega) {
+        if (!"PENDENTE".equals(this.status)) {
+            System.out.println("Só é possível associar entregador com entrega PENDENTE.");
+            return false;
         }
 
+        if (entregadorAssociado == null) {
+            System.out.println("Entregador obrigatório.");
+            return false;
+        }
+
+        if (this.enderecoDestino.isBlank()) {
+            System.out.println("Endereço inválido na entrega.");
+            return false;
+        }
+
+        this.entregador = entregadorAssociado;
+        if (observacaoDaEntrega != null && !observacaoDaEntrega.trim().isEmpty()) {
+            this.observacao = observacaoDaEntrega.trim();
+        }
         this.status = "EM_ROTA";
-        return false;
+        return true;
     }
 
     public boolean atualizarStatus(String novoStatus) {
@@ -56,24 +86,47 @@ public final class Entrega {
             return false;
         }
 
-        this.status = novoStatus;
-        return true;
-    }
+        String atual = this.status;
+        if (atual.equals(novoStatus)) {
+            return true;
+        }
 
-    private boolean associarEntregador(Entregador entregadorAssociado) {
-        if (entregadorAssociado == null) {
-            System.out.println("Entregador obrigatório.");
+        if ("ENTREGUE".equals(atual) || "CANCELADO".equals(atual)) {
+            System.out.println("Entrega finalizada; não é possível alterar o status.");
             return false;
         }
 
-        if ("CANCELADO".equals(this.status) || "ENTREGUE".equals(this.status)) {
-            System.out.println(
-                    "Não é permitido alterar entregador neste estado: " + this.status);
+        if ("PENDENTE".equals(atual)) {
+            if ("CANCELADO".equals(novoStatus)) {
+                this.status = novoStatus;
+                return true;
+            }
+            if ("EM_ROTA".equals(novoStatus)) {
+                System.out.println(
+                        "Use a opção do menu \"Associar entregador à entrega\" para colocar em EM_ROTA.");
+                return false;
+            }
+            if ("ENTREGUE".equals(novoStatus)) {
+                System.out.println(
+                        "Não é possível marcar como ENTREGUE sem entregador associado (EM_ROTA).");
+                return false;
+            }
             return false;
         }
 
-        this.entregador = entregadorAssociado;
-        return true;
+        if ("EM_ROTA".equals(atual)) {
+            if ("ENTREGUE".equals(novoStatus) || "CANCELADO".equals(novoStatus)) {
+                this.status = novoStatus;
+                return true;
+            }
+            if ("PENDENTE".equals(novoStatus)) {
+                System.out.println("Não é possível voltar de EM_ROTA para PENDENTE.");
+                return false;
+            }
+            return false;
+        }
+
+        return false;
     }
 
     @Override
@@ -84,7 +137,9 @@ public final class Entrega {
                 ================================
                 ID:                      %d
                 Endereço de destino:     %s
+                Distância (km):          %.2f
                 Status:                  %s
+                Observação:              %s
                 ----------------------------
                 Detalhes do entregador:
                 %s
@@ -96,7 +151,9 @@ public final class Entrega {
         return resumoFormatado.formatted(
                 this.id,
                 this.enderecoDestino,
+                this.distanciaKm,
                 this.status,
+                this.observacao.isBlank() ? "sem observação" : this.observacao,
                 detalhesDoEntregador);
     }
 }

@@ -23,8 +23,9 @@ public final class MenuConsole {
         System.out.println();
         System.out.println("1 — Cadastrar entregador");
         System.out.println("2 — Criar entrega");
-        System.out.println("3 — Listar entregas");
-        System.out.println("4 — Atualizar status da entrega");
+        System.out.println("3 — Associar entregador à entrega");
+        System.out.println("4 — Listar entregas");
+        System.out.println("5 — Atualizar status da entrega");
         System.out.println("0 — Sair");
         System.out.print("Escolha: ");
     }
@@ -40,10 +41,14 @@ public final class MenuConsole {
                 yield true;
             }
             case "3" -> {
-                this.sistemaDelivery.listarEntregas();
+                this.sistemaDelivery.associarEntregadorAEntrega();
                 yield true;
             }
             case "4" -> {
+                this.sistemaDelivery.listarEntregas();
+                yield true;
+            }
+            case "5" -> {
                 this.sistemaDelivery.atualizarStatusEntrega();
                 yield true;
             }
