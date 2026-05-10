@@ -7,27 +7,24 @@ import java.util.Scanner;
 
 public class SistemaDelivery {
     private final Scanner scanner = new Scanner(System.in);
-    private final List<Entregador> entregadores = new ArrayList();
+    private final List<Entregador> entregadores = new ArrayList<>();
     private final List<Entrega> entregas = new ArrayList<>();
 
-    public void cadastrarEntregador(){
-        System.out.println("Digite o nome do Entregador");
+    public void cadastrarEntregador() {
+        System.out.println("Digite o nome do Entregador:");
         String nome = scanner.nextLine().trim();
 
-        System.out.println("Digite o identificador do Entregador");
-        String id = scanner.nextLine().trim();
-
         System.out.println("Qual o veiculo de entrega?");
-        String tipo = scanner.nextLine().trim();
+        String tipoVeiculo = scanner.nextLine().trim();
 
-        Entregador entregador = EntregadorFactory.criarEntregador(tipo, id, nome);
+        Entregador entregador = EntregadorFactory.criarEntregador(tipoVeiculo, nome);
 
         entregadores.add(entregador);
 
         System.out.println(entregador);
     }
 
-    public void cadastrarEntrega(){
+    public void cadastrarEntrega() {
         System.out.println("Digite o endereço da Entrega");
         String enderecoDestino = scanner.nextLine().trim();
 
@@ -35,7 +32,7 @@ public class SistemaDelivery {
 
         entregas.add(entrega);
 
-        if(!entregadores.isEmpty()){
+        if (!entregadores.isEmpty()) {
             entrega.registrarEntrega(atribuirEntregador());
         }
 
@@ -43,7 +40,7 @@ public class SistemaDelivery {
 
     }
 
-    public void atribuirEntregadorEntrega(){
+    public void atribuirEntregadorEntrega() {
         if (entregas.isEmpty()) {
             System.out.println("Nenhuma entrega cadastrada.");
             return;
@@ -54,7 +51,7 @@ public class SistemaDelivery {
             return;
         }
 
-        System.out.println("=======Entregas Disponiveis ==========");
+        System.out.println("=======Entregas Disponíveis ==========");
 
         for (int i = 0; i < entregas.size(); i++) {
             System.out.println(i + " - " + entregas.get(i));
@@ -73,32 +70,28 @@ public class SistemaDelivery {
         System.out.println(entrega);
     }
 
-    private Entregador atribuirEntregador(){
-        if(!entregadores.isEmpty()){
+    private Entregador atribuirEntregador() {
+        if (!entregadores.isEmpty()) {
             Random random = new Random();
 
             int indice = random.nextInt(entregadores.size());
 
-            Entregador entregador = entregadores.remove(indice);
-
-            return entregador;
-
+            return entregadores.remove(indice);
         }
 
         return null;
     }
 
-    public void listarEntregas(){
-        if(entregas.isEmpty()) {
+    public void listarEntregas() {
+        if (entregas.isEmpty()) {
             System.out.println("Nenhuma Entrega Cadastrada");
             return;
         }
 
         System.out.println("========= Entregas Cadastradas =========\n");
-        for(Entrega e : entregas){
+        for (Entrega e : entregas) {
             System.out.println(e);
         }
-
     }
 
 }

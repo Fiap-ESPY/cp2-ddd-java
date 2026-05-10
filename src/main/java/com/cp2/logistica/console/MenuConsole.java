@@ -1,7 +1,5 @@
 package com.cp2.logistica.console;
 
-import com.cp2.logistica.domain.Entregador;
-import com.cp2.logistica.domain.EntregadorFactory;
 import com.cp2.logistica.domain.SistemaDelivery;
 
 import java.util.Scanner;
@@ -33,29 +31,36 @@ public final class MenuConsole {
     }
 
     private boolean processar(String opcaoDoMenu) {
-        switch (opcaoDoMenu) {
-            case "1":
+        return switch (opcaoDoMenu) {
+            case "1" -> {
                 this.sistemaDelivery.cadastrarEntregador();
-                return true;
-            case "2":
+                yield true;
+            }
+            case "2" -> {
                 this.sistemaDelivery.cadastrarEntrega();
-                return true;
-            case "3":
+                yield true;
+            }
+            case "3" -> {
                 this.sistemaDelivery.listarEntregas();
-                return true;
-            case "4":
+                yield true;
+            }
+            case "4" -> {
                 this.sistemaDelivery.atribuirEntregadorEntrega();
-                return true;
-            case "5":
+                yield true;
+            }
+            case "5" -> {
                 this.informarImplementacaoFutura("Atualizar status");
-                return true;
-            case "0":
+                yield true;
+            }
+            case "0" -> {
                 System.out.println("Encerrando.");
-                return false;
-            default:
+                yield false;
+            }
+            default -> {
                 System.out.println("Opção inválida.");
-                return true;
-        }
+                yield true;
+            }
+        };
     }
 
     private void informarImplementacaoFutura(String textoDaAcao) {

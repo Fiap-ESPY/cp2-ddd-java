@@ -1,16 +1,18 @@
 package com.cp2.logistica.domain;
 
+import java.util.Random;
+
 public abstract class Entregador implements TarifaPorDistancia {
 
-    private final String id;
+    private final Long id = Math.abs(new Random().nextLong());
+
     private final String nome;
 
-    protected Entregador(String identificador, String nome) {
-        this.id = identificador;
+    protected Entregador(String nome) {
         this.nome = nome;
     }
 
-    public final String getId() {
+    public final Long getId() {
         return id;
     }
 
@@ -59,7 +61,7 @@ public abstract class Entregador implements TarifaPorDistancia {
                 ================================
                    ENTREGADOR
                 ================================
-                Identificador:            %s
+                ID:                       %s
                 Nome:                     %s
                 Tipo:                     %s
                 ----------------------------
