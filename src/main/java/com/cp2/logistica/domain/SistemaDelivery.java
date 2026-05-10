@@ -43,7 +43,6 @@ public class SistemaDelivery {
 
     }
 
-
     public void atribuirEntregadorEntrega(){
         if (entregas.isEmpty()) {
             System.out.println("Nenhuma entrega cadastrada.");
@@ -61,7 +60,6 @@ public class SistemaDelivery {
             System.out.println(i + " - " + entregas.get(i));
         }
 
-
         System.out.println("Escolha a entrega:");
         int indiceEntrega = Integer.parseInt(scanner.nextLine());
 
@@ -74,7 +72,6 @@ public class SistemaDelivery {
         System.out.println("Entregador atribuído com sucesso!");
         System.out.println(entrega);
     }
-
 
     private Entregador atribuirEntregador(){
         if(!entregadores.isEmpty()){
@@ -97,14 +94,11 @@ public class SistemaDelivery {
             return;
         }
 
-        System.out.println("========= Entregas Cadastradas ========= \n" );
+        System.out.println("========= Entregas Cadastradas =========\n");
         for(Entrega e : entregas){
             System.out.println(e);
         }
 
     }
-
-
-
 
 }

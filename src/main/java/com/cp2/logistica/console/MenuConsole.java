@@ -58,9 +58,6 @@ public final class MenuConsole {
         }
     }
 
-
-
-
     private void informarImplementacaoFutura(String textoDaAcao) {
         System.out.println("[Em breve] " + textoDaAcao + ".");
     }
