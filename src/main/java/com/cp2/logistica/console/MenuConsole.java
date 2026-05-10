@@ -1,10 +1,13 @@
 package com.cp2.logistica.console;
 
+import com.cp2.logistica.domain.SistemaDelivery;
+
 import java.util.Scanner;
 
 public final class MenuConsole {
 
     private final Scanner scanner = new Scanner(System.in);
+    private final SistemaDelivery sistemaDelivery = new SistemaDelivery();
 
     public void executar() {
         System.out.println("Sistema de Logística — CP2 (base)");
@@ -28,29 +31,36 @@ public final class MenuConsole {
     }
 
     private boolean processar(String opcaoDoMenu) {
-        switch (opcaoDoMenu) {
-            case "1":
-                this.informarImplementacaoFutura("Cadastrar entregador");
-                return true;
-            case "2":
-                this.informarImplementacaoFutura("Criar entrega");
-                return true;
-            case "3":
-                this.informarImplementacaoFutura("Listar entregas");
-                return true;
-            case "4":
-                this.informarImplementacaoFutura("Atribuir entrega");
-                return true;
-            case "5":
+        return switch (opcaoDoMenu) {
+            case "1" -> {
+                this.sistemaDelivery.cadastrarEntregador();
+                yield true;
+            }
+            case "2" -> {
+                this.sistemaDelivery.cadastrarEntrega();
+                yield true;
+            }
+            case "3" -> {
+                this.sistemaDelivery.listarEntregas();
+                yield true;
+            }
+            case "4" -> {
+                this.sistemaDelivery.atribuirEntregadorEntrega();
+                yield true;
+            }
+            case "5" -> {
                 this.informarImplementacaoFutura("Atualizar status");
-                return true;
-            case "0":
+                yield true;
+            }
+            case "0" -> {
                 System.out.println("Encerrando.");
-                return false;
-            default:
+                yield false;
+            }
+            default -> {
                 System.out.println("Opção inválida.");
-                return true;
-        }
+                yield true;
+            }
+        };
     }
 
     private void informarImplementacaoFutura(String textoDaAcao) {

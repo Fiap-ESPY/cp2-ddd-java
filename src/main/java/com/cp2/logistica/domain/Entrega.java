@@ -86,7 +86,7 @@ public final class Entrega {
                 ================================
                    ENTREGA
                 ================================
-                Identificação:           %d
+                ID:                      %d
                 Endereço de destino:     %s
                 ----------------------------
                 Status:                  %s

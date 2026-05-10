@@ -1,3 +1,6 @@
+# IDE (IntelliJ / Cursor)
+.idea/
+
 # Compiled class file
 *.class
 
