@@ -153,7 +153,7 @@ public final class Entrega {
                 this.enderecoDestino,
                 this.distanciaKm,
                 this.status,
-                this.observacao.isBlank() ? "sem observação" : this.observacao,
+                this.observacao == null ? "sem observação" : this.observacao,
                 detalhesDoEntregador);
     }
 }
