@@ -1,5 +1,12 @@
+# IDE (IntelliJ / Cursor)
+.idea/
+
 # Compiled class file
 *.class
+
+/out/
+/bin/
+/target/
 
 # Log file
 *.log
